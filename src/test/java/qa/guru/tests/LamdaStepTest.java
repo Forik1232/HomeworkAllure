@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.nio.charset.StandardCharsets;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -41,6 +42,9 @@ public class LamdaStepTest {
                 });
                 step("Проверяем что существует Issue с номером " + ISSUE_NUMBER, () -> {
                         $(withText("#4")).click();
+
+                        $(withText("#4")).shouldHave(text("#4"));
+
                         Allure.getLifecycle().addAttachment(
                                 "Исходники страницы",
                                 "text/html",
